@@ -8,15 +8,7 @@ namespace TUnicodeEmoticons.ViewModels
     public class MainViewModel : PropertyChangedBase
     {
         private static MainViewModel _instance;
-        public static MainViewModel MainStatic
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new MainViewModel();
-                return _instance;
-            }
-        }
+        public static MainViewModel Instance => _instance ?? (_instance = new MainViewModel());
 
         private MainViewModel()
         {
@@ -30,15 +22,8 @@ namespace TUnicodeEmoticons.ViewModels
         private ObservableCollection<ITile> _tiles;
         public ObservableCollection<ITile> Tiles
         {
-            get
-            {
-                return _tiles;
-            }
-            set
-            {
-                _tiles = value;
-                OnPropertyChanged();
-            }
+            get { return _tiles; }
+            set { SetProperty(value, ref _tiles, nameof(Tiles)); }
         }
     }
 }

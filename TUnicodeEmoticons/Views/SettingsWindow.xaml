@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:tUnicodeEmoticons="clr-namespace:TUnicodeEmoticons"
-        xmlns:viewModels="clr-namespace:TUnicodeEmoticons.ViewModels"
         Title="Settings - TUnicodeEmoticons 0.1.0"
         Width="568.177"
         Height="326"
@@ -13,9 +12,6 @@
         ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
         mc:Ignorable="d">
-    <Window.DataContext>
-        <viewModels:SettingsViewModel />
-    </Window.DataContext>
     <Window.Resources>
         <ObjectDataProvider x:Key="HorizontalAlignmentEnum"
                             MethodName="GetValues"
@@ -78,7 +74,7 @@
             <ComboBox Width="100"
                       Height="23"
                       ItemsSource="{Binding ThirdKeyCollection}"
-                      SelectedIndex="{Binding HotKeyData.KeyIndex,
+                      SelectedValue="{Binding HotKeyData.Key,
                                               Mode=TwoWay}" />
         </StackPanel>
 

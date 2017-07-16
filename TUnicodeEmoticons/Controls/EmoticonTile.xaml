@@ -4,13 +4,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              Width="Auto"
-             Height="50"
+             Height="Auto"
              MinWidth="50"
              d:DesignHeight="50"
              d:DesignWidth="50"
              mc:Ignorable="d">
     <Grid>
-        <TextBlock Name="tileContentBlock"
+        <TextBlock Name="TileContentBlock"
                    HorizontalAlignment="Center"
                    VerticalAlignment="Center"
                    FontFamily="Segoe UI"

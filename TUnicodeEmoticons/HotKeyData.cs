@@ -1,4 +1,5 @@
-﻿using TUnicodeEmoticons.Infrastructure;
+﻿using System.Windows.Input;
+using TUnicodeEmoticons.Infrastructure;
 
 namespace TUnicodeEmoticons
 {
@@ -8,65 +9,45 @@ namespace TUnicodeEmoticons
         private bool _hasFirstModifier;
         private int _secondModifierIndex;
         private bool _hasSecondModifier;
-        private int _keyIndex;
+        private Key _key;
 
-        public HotKeyData(int firstModifierIndex, bool hasFirstModifier, int secondModifierIndex, bool hasSecondModifier, int keyIndexIndex)
+        public HotKeyData(int firstModifierIndex, bool hasFirstModifier, int secondModifierIndex, bool hasSecondModifier, Key key)
         {
             FirstModifierIndex = firstModifierIndex;
             HasFirstModifier = hasFirstModifier;
             SecondModifierIndex = secondModifierIndex;
             HasSecondModifier = hasSecondModifier;
-            KeyIndex = keyIndexIndex;
+            Key = key;
         }
 
         public int FirstModifierIndex
         {
             get { return _firstModifierIndex; }
-            set
-            {
-                _firstModifierIndex = value;
-                OnPropertyChanged();
-            }
+            set { SetProperty(value, ref _firstModifierIndex, nameof(FirstModifierIndex)); }
         }
 
         public bool HasFirstModifier
         {
             get { return _hasFirstModifier; }
-            set
-            {
-                _hasFirstModifier = value;
-                OnPropertyChanged();
-            }
+            set { SetProperty(value, ref _hasFirstModifier, nameof(HasFirstModifier)); }
         }
 
         public int SecondModifierIndex
         {
             get { return _secondModifierIndex; }
-            set
-            {
-                _secondModifierIndex = value;
-                OnPropertyChanged();
-            }
+            set { SetProperty(value, ref _secondModifierIndex, nameof(SecondModifierIndex)); }
         }
 
         public bool HasSecondModifier
         {
             get { return _hasSecondModifier; }
-            set
-            {
-                _hasSecondModifier = value;
-                OnPropertyChanged();
-            }
+            set { SetProperty(value, ref _hasSecondModifier, nameof(HasSecondModifier)); }
         }
 
-        public int KeyIndex
+        public Key Key
         {
-            get { return _keyIndex; }
-            set
-            {
-                _keyIndex = value;
-                OnPropertyChanged();
-            }
+            get { return _key; }
+            set { SetProperty(value, ref _key, nameof(Key)); }
         }
     }
 }

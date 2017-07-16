@@ -1,13 +1,11 @@
-﻿using System;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace TUnicodeEmoticons.Controls
 {
     /// <summary>
     /// Interaction logic for EmoticonTile.xaml
     /// </summary>
-    public partial class EmoticonTile : UserControl, ITile
+    public partial class EmoticonTile : ITile
     {
         public string Text { get; set; }
 
@@ -21,7 +19,7 @@ namespace TUnicodeEmoticons.Controls
             InitializeComponent();
             ToolTip = toolTipText;
             Text = text;
-            tileContentBlock.Text = text;
+            TileContentBlock.Text = text;
         }
 
         public void InvokeAction()

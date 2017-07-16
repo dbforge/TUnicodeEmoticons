@@ -1,11 +1,9 @@
-﻿using System.Windows.Controls;
-
-namespace TUnicodeEmoticons.Controls
+﻿namespace TUnicodeEmoticons.Controls
 {
     /// <summary>
     /// Interaction logic for ActionTile.xaml
     /// </summary>
-    public partial class ActionTile : UserControl, ITile
+    public partial class ActionTile : ITile
     {
         public ActionTile()
         {
@@ -16,7 +14,7 @@ namespace TUnicodeEmoticons.Controls
         {
             InitializeComponent();
             ToolTip = toolTipText;
-            tileContentBlock.Text = text;
+            TileContentBlock.Text = text;
         }
 
         public void InvokeAction()

@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using TUnicodeEmoticons.ViewModels;
 
 namespace TUnicodeEmoticons.Views
 {
@@ -10,6 +11,7 @@ namespace TUnicodeEmoticons.Views
         private SettingsWindow()
         {
             InitializeComponent();
+            DataContext = SettingsViewModel.Instance;
         }
 
         private static SettingsWindow _instance;

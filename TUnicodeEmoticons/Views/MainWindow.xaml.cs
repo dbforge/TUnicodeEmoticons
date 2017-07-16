@@ -16,7 +16,7 @@ namespace TUnicodeEmoticons.Views
         private MainWindow()
         {
             InitializeComponent();
-            DataContext = MainViewModel.MainStatic;
+            DataContext = MainViewModel.Instance;
         }
 
         private static MainWindow _instance;
@@ -42,7 +42,7 @@ namespace TUnicodeEmoticons.Views
                     Left = desktopWorkingArea.Right - Width;
                     break;
                 case HorizontalWindowPosition.Center:
-                    Left = (desktopWorkingArea.Right / 2) - (Width / 2);
+                    Left = desktopWorkingArea.Right / 2 - Width / 2;
                     break;
             }
 
@@ -55,16 +55,16 @@ namespace TUnicodeEmoticons.Views
                     Top = desktopWorkingArea.Bottom - Height;
                     break;
                 case VerticalWindowPosition.Center:
-                    Top = (desktopWorkingArea.Bottom / 2) - (Height / 2);
+                    Top = desktopWorkingArea.Bottom / 2 - Height / 2;
                     break;
             }
         }
 
         private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            int index = emoticonListBox.SelectedIndex;
+            int index = EmoticonListBox.SelectedIndex;
             if (index != -1)
-                MainViewModel.MainStatic.Tiles[index].InvokeAction();
+                MainViewModel.Instance.Tiles[index].InvokeAction();
 
             if (Session.Settings.AutoCloseWindow)
                 Close();
@@ -72,15 +72,15 @@ namespace TUnicodeEmoticons.Views
 
         private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
         {
-            if (IsNullOrWhiteSpace(searchTextBox.Text))
-                MainViewModel.MainStatic.Tiles = new ObservableCollection<ITile>(Session.TileData.Select(x => new EmoticonTile(x.Text, x.ToolTip)))
+            if (IsNullOrWhiteSpace(SearchTextBox.Text))
+                MainViewModel.Instance.Tiles = new ObservableCollection<ITile>(Session.TileData.Select(x => new EmoticonTile(x.Text, x.ToolTip)))
                 {
                     new ActionTile("+", "Add an emoticon...")
                 };
             else
             {
-                MainViewModel.MainStatic.Tiles.Clear();
-                MainViewModel.MainStatic.Tiles = new ObservableCollection<ITile>(Session.TileData.Where(t => t.Text.Contains(searchTextBox.Text) || t.ToolTip.Contains(searchTextBox.Text)).Select(x => new EmoticonTile(x.Text, x.ToolTip)))
+                MainViewModel.Instance.Tiles.Clear();
+                MainViewModel.Instance.Tiles = new ObservableCollection<ITile>(Session.TileData.Where(t => t.Text.Contains(SearchTextBox.Text) || t.ToolTip.Contains(SearchTextBox.Text)).Select(x => new EmoticonTile(x.Text, x.ToolTip)))
                 {
                     new ActionTile("+", "Add an emoticon...")
                 };

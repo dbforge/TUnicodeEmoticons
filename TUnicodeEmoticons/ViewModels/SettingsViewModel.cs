@@ -8,12 +8,14 @@ namespace TUnicodeEmoticons.ViewModels
 {
     public class SettingsViewModel : PropertyChangedBase
     {
-        public SettingsViewModel()
+        private static SettingsViewModel _instance;
+        public static SettingsViewModel Instance => _instance ?? (_instance = new SettingsViewModel());
+        
+        private SettingsViewModel()
         {
             _firstKeyCollection = new ObservableCollection<string> { "Control", "Alt" };
             _secondKeyCollection = new ObservableCollection<string> { "Shift", "Win" };
-            _thirdKeyCollection = new ObservableCollection<string>(Enum.GetValues(typeof(Key)).Cast<Key>()
-                .Select(key => key.ToString()).ToList());
+            _thirdKeyCollection = new ObservableCollection<Key>(Enum.GetValues(typeof(Key)).Cast<Key>());
         }
         
         public HotKeyData HotKeyData => Session.Settings.HotKeyData;
@@ -40,8 +42,8 @@ namespace TUnicodeEmoticons.ViewModels
             }
         }
 
-        private ObservableCollection<string> _thirdKeyCollection;
-        public ObservableCollection<string> ThirdKeyCollection
+        private ObservableCollection<Key> _thirdKeyCollection;
+        public ObservableCollection<Key> ThirdKeyCollection
         {
             get { return _thirdKeyCollection; }
             set
@@ -57,7 +59,7 @@ namespace TUnicodeEmoticons.ViewModels
             set
             {
                 Session.Settings.AutoCloseWindow = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(AutoClosePopup));
             }
         }
 
@@ -67,7 +69,7 @@ namespace TUnicodeEmoticons.ViewModels
             set
             {
                 Session.Settings.PopupHorizontalPosition = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(PopupHorizontalPosition));
             }
         }
 
@@ -77,7 +79,7 @@ namespace TUnicodeEmoticons.ViewModels
             set
             {
                 Session.Settings.PopupVerticalPosition = value;
-                OnPropertyChanged();
+                OnPropertyChanged(nameof(PopupVerticalPosition));
             }
         }
     }
