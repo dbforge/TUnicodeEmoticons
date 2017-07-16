@@ -15,22 +15,14 @@ namespace TUnicodeEmoticons
         public string Text
         {
             get { return _text; }
-            set
-            {
-                _text = value;
-                OnPropertyChanged();
-            }
+            set { SetProperty(value, ref _text, nameof(Text)); }
         }
 
         private string _toolTip;
         public string ToolTip
         {
             get { return _toolTip; }
-            set
-            {
-                _toolTip = value;
-                OnPropertyChanged();
-            }
+            set { SetProperty(value, ref _toolTip, nameof(ToolTip)); }
         }
 
         public static IEnumerable<TileData> Default
