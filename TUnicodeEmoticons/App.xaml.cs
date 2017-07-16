@@ -16,10 +16,39 @@ namespace TUnicodeEmoticons
             var application = new App();
             application.InitializeComponent();
             application.ShutdownMode = ShutdownMode.OnExplicitShutdown;
-            
-            Session.InitializeData();
-            Session.InitializeNotifyIcon();
-            Session.InitializeHotKey();
+
+            try
+            {
+                Session.InitializeData();
+            }
+            catch
+            {
+                if (MessageBox.Show("The program specific data could not be initialized.", "Error while loading the data.",
+                    MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                    throw;
+            }
+
+            try
+            {
+                Session.InitializeNotifyIcon();
+            }
+            catch
+            {
+                if (MessageBox.Show("The notify icon could not be initialized.", "Error while initializing the notify icon.",
+                        MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                    throw;
+            }
+
+            try
+            {
+                Session.InitializeHotKey();
+            }
+            catch
+            {
+                if (MessageBox.Show("The hotkey could not be registered correctly.", "Error while registering the hotkey.",
+                        MessageBoxButton.OK, MessageBoxImage.Error) == MessageBoxResult.OK)
+                    throw;
+            }
 
             application.Run();
         }
