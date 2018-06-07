@@ -58,6 +58,11 @@ namespace TUnicodeEmoticons.Views
                     Top = desktopWorkingArea.Bottom / 2 - Height / 2;
                     break;
             }
+
+            MainViewModel.Instance.Tiles = new ObservableCollection<ITile>(Session.TileData.Select(x => new EmoticonTile(x.Text, x.ToolTip)))
+                {
+                    new ActionTile("+", "Add an emoticon...")
+                };
         }
 
         private void ListBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
